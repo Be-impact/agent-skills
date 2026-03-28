@@ -2,117 +2,127 @@
 
 Reusable AI agent skills for the impact ecosystem — built and maintained by [BE.IMPACT](https://be-impact.org).
 
-These skills teach AI agents (Claude, GPT, Gemini, and others via OpenClaw) to reason about impact, understand the Belgian ecosystem, and execute BE.IMPACT workflows.
+These skills teach AI agents to reason about impact, navigate the Belgian ecosystem, and run BE.IMPACT workflows. They follow the [agentskills.io](https://agentskills.io) open standard — compatible with Claude Code, OpenAI Codex, Cursor, VS Code Copilot, Gemini CLI, and 25+ other AI tools.
 
-## What are agent skills?
-
-A skill is a folder containing a `SKILL.md` file — a plain-text instruction set that agents load at runtime. Think of it like a plugin: install a skill and your agent instantly understands how to do something new.
+[![agentskills.io spec](https://img.shields.io/badge/agentskills.io-spec-lightgrey)](https://agentskills.io/specification)
+[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-blueviolet)](https://code.claude.com/docs/en/skills)
+[![Codex compatible](https://img.shields.io/badge/Codex-compatible-orange)](https://developers.openai.com/codex/skills/)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![Version](https://img.shields.io/badge/version-1.3.0-green)](CHANGELOG.md)
 
 ---
 
-## ✨ Quickest way to use a skill — paste the URL
+## ✨ Quickest way — paste a URL into any AI
 
-You don't need to install anything. Just paste the raw URL of any `SKILL.md` file into your AI assistant and say:
+No install needed. Copy any skill's raw URL and say:
 
-> **"Please read this skill file and follow its instructions: [URL]"**
+> **"Please read this skill and follow its instructions: [URL]"**
+
+Works with Claude, ChatGPT, Gemini — anything that can read a URL.
 
 **Example:**
-
-> "Please read this skill file and follow its instructions:
-> https://raw.githubusercontent.com/Be-impact/agent-skills/main/skills/impact-domain/sustainable-shopping-advisor/SKILL.md"
-
-This works with **Claude**, **ChatGPT**, **Gemini**, and any AI assistant that can read URLs. No installs, no config — just paste and go.
-
-To find the raw URL for any skill: open the `SKILL.md` file on GitHub → click **Raw** → copy that URL.
+```
+Please read this skill and follow its instructions:
+https://raw.githubusercontent.com/Be-impact/agent-skills/main/plugins/impact-domain/skills/sustainable-shopping-advisor/SKILL.md
+```
 
 ---
 
-## Installing a skill in OpenClaw
+## Install via Claude Code plugin marketplace
 
-If you use [OpenClaw](https://openclaw.ai), you can install skills permanently so they're always available to your agent.
-
-**Option 1 — Via ClawHub CLI (coming soon):**
 ```bash
-npx clawhub install beimpact/sustainable-shopping-advisor
+# Add the BE.IMPACT marketplace (once)
+claude plugin marketplace add Be-impact/agent-skills
+
+# Install a plugin
+claude plugin install impact-domain@beimpact
+claude plugin install ecosystem-intelligence@beimpact
 ```
 
-**Option 2 — Manual install:**
+## Install via script (OpenClaw, Codex, or any agent)
+
 ```bash
-# Clone the repo
 git clone https://github.com/Be-impact/agent-skills
+cd agent-skills
 
-# Copy the skill you want into your OpenClaw skills directory
-cp -r agent-skills/skills/impact-domain/sustainable-shopping-advisor \
-  ~/.openclaw/workspace/skills/
+./install.sh                          # Install all plugins
+./install.sh impact-domain            # Install one plugin
+./install.sh list                     # List available plugins
+./install.sh verify                   # Verify installed skills
+./install.sh update impact-domain     # Update a plugin
+./install.sh uninstall impact-domain  # Remove a plugin
+./install.sh --target ~/custom/skills # Custom install path
 ```
 
-Once installed, OpenClaw will automatically load the skill when relevant.
+The installer auto-detects your agent (OpenClaw → Codex → Claude Code) and installs to the right location.
 
----
+## Install via ClawHub
 
-## Skills in this library
-
-### 🌍 `impact-domain/` — Impact reasoning & frameworks
-
-| Skill | Description |
-|-------|-------------|
-| [`bcorp-assessment`](skills/impact-domain/bcorp-assessment/) | Guide organizations through B Corp certification requirements |
-| [`impact-mission-validator`](skills/impact-domain/impact-mission-validator/) | Validate whether an organization's mission is authentic and measurable |
-| [`impact-classifier`](skills/impact-domain/impact-classifier/) | Classify organizations and activities by impact type and SDG alignment |
-| [`impact-scaling-strategy`](skills/impact-domain/impact-scaling-strategy/) | Build strategies for scaling impact alongside revenue |
-| [`theory-of-change-builder`](skills/impact-domain/theory-of-change-builder/) | Structure an organization's theory of change (inputs → outcomes → impact) |
-| [`applying-doughnut-economics`](skills/impact-domain/applying-doughnut-economics-for-sustainable-development/) | Apply Doughnut Economics principles to business and policy decisions |
-| [`sustainable-shopping-advisor`](skills/impact-domain/sustainable-shopping-advisor/) | Evaluate products and brands through a sustainability and impact lens |
-
-### 🇧🇪 `ecosystem-intelligence/` — Belgian & European impact ecosystem
-
-| Skill | Description |
-|-------|-------------|
-| [`belgian-funding-navigator`](skills/ecosystem-intelligence/belgian-funding-navigator/) | Navigate Belgian and European funding options for impact organizations |
-
-### ⚙️ `beimpact-workflows/` — BE.IMPACT operational workflows
-
-*Coming soon*
-
----
-
-## Skill categories
-
-```
-skills/
-├── impact-domain/          ← SDGs, B Corp, mission scoring, impact terminology
-├── ecosystem-intelligence/ ← Belgian ecosystem, funding landscape, investor matching
-└── beimpact-workflows/     ← BE.IMPACT-specific workflows (matchmaking, scoring, outreach)
+```bash
+npx clawhub install beimpact/impact-domain
+npx clawhub install beimpact/ecosystem-intelligence
 ```
 
 ---
 
-## Contributing
+## Plugins
 
-Skills are maintained in this repo. To propose a new skill or improve an existing one:
+### 🌍 `impact-domain` — Impact reasoning & frameworks
 
-1. Fork the repo
-2. Create a folder under the appropriate category
-3. Add a `SKILL.md` with YAML frontmatter (`name`, `description`) and instructions
-4. Open a PR — we review in `#ai-public-skills` on the [BE.IMPACT Slack](https://be-impact.org)
+[→ Plugin README](plugins/impact-domain/README.md)
 
-Or drop your idea in `#ai-public-skills` and we'll draft it for you.
+| Skill | Description | Status |
+|-------|-------------|--------|
+| [`bcorp-assessment`](plugins/impact-domain/skills/bcorp-assessment/) | Guide organizations through B Corp certification — BIA scoring, gap analysis, improvements | ✅ Stable |
+| [`impact-mission-validator`](plugins/impact-domain/skills/impact-mission-validator/) | Validate and strengthen mission statements — greenwashing check, SDG alignment | ✅ Stable |
+| [`impact-classifier`](plugins/impact-domain/skills/impact-classifier/) | Classify organizations by impact tier across 5 dimensions | ✅ Stable |
+| [`impact-scaling-strategy`](plugins/impact-domain/skills/impact-scaling-strategy/) | Choose the right scaling strategy (deep/up/out/down) for social innovation | ✅ Stable |
+| [`theory-of-change-builder`](plugins/impact-domain/skills/theory-of-change-builder/) | Build a Theory of Change from problem definition to long-term impact vision | ✅ Stable |
+| [`applying-doughnut-economics-for-sustainable-development`](plugins/impact-domain/skills/applying-doughnut-economics-for-sustainable-development/) | Apply Doughnut Economics to policy and business strategy | ✅ Stable |
+| [`sustainable-shopping-advisor`](plugins/impact-domain/skills/sustainable-shopping-advisor/) | Evaluate products and brands through a sustainability and impact lens | ✅ Stable |
+
+### 🇧🇪 `ecosystem-intelligence` — Belgian & European impact ecosystem
+
+[→ Plugin README](plugins/ecosystem-intelligence/README.md)
+
+| Skill | Description | Status |
+|-------|-------------|--------|
+| [`belgian-funding-navigator`](plugins/ecosystem-intelligence/skills/belgian-funding-navigator/) | Navigate Belgian impact funding — grants, investors, accelerators, EU programs | ✅ Stable |
+
+### ⚙️ `beimpact-workflows` — BE.IMPACT operational workflows
+
+[→ Plugin README](plugins/beimpact-workflows/README.md)
+
+| Skill | Description | Status |
+|-------|-------------|--------|
+| `matchmaking` | BE.IMPACT matchmaking methodology — compatibility scoring between orgs and investors | 🔜 Planned |
+| `impact-scoring` | BE.IMPACT impact scoring framework for orgs and opportunities | 🔜 Planned |
+| `funding-roadmap` | Step-by-step funding roadmap from current stage to next milestone | 🔜 Planned |
+
+---
 
 ## Skill format
 
-Each skill folder contains at minimum:
+Skills follow the [agentskills.io specification](https://agentskills.io/specification):
 
 ```
 my-skill/
-└── SKILL.md
+├── SKILL.md          # Required: YAML frontmatter + instructions
+├── references/       # Optional: additional docs loaded on demand
+├── scripts/          # Optional: executable code
+└── assets/           # Optional: templates, resources
 ```
 
 ```yaml
 ---
-name: my-skill
-description: >
-  One or two sentences describing when this skill should be used.
-  This is what the agent reads to decide whether to load the skill.
+name: my-skill-name         # lowercase + hyphens, must match directory name
+description: >-
+  What the skill does and when to use it. Include specific keywords.
+  Agents read this to decide whether to activate the skill.
+license: MIT
+metadata:
+  author: beimpact
+  version: "1.0"
 ---
 
 # Skill Title
@@ -122,13 +132,26 @@ Instructions for the agent...
 
 ---
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines.
+
+Short version:
+1. Fork the repo
+2. Add your skill under `plugins/<category>/skills/<skill-name>/SKILL.md`
+3. Follow the [agentskills.io spec](https://agentskills.io/specification)
+4. Open a PR — or drop an idea in `#ai-public-skills` and we'll draft it
+
+---
+
 ## Publishing roadmap
 
-| Phase | What | Status |
-|-------|------|--------|
-| **Now** | Public GitHub repo — paste raw URL to use any skill | ✅ Live |
-| **Soon** | ClawHub registry — `clawhub install beimpact/<skill>` | 🔜 Planned |
-| **Later** | MCP wrapper — use skills as tools in Claude.ai Projects | 💡 Exploring |
+| Method | Status |
+|--------|--------|
+| GitHub (paste URL into any AI) | ✅ Live |
+| Claude Code plugin marketplace (`claude plugin marketplace add`) | ✅ Live |
+| Shell installer (`./install.sh`) | ✅ Live |
+| ClawHub registry (`npx clawhub install`) | 🔜 Soon |
 
 ---
 
@@ -136,6 +159,8 @@ Instructions for the agent...
 
 MIT — free to use, adapt, and build on. Attribution appreciated.
 
+See [CHANGELOG.md](CHANGELOG.md) for release history.
+
 ---
 
-Made with 🌱 by [BE.IMPACT](https://be-impact.org)
+Made with 🌱 by [BE.IMPACT](https://be-impact.org) · [agentskills.io](https://agentskills.io)

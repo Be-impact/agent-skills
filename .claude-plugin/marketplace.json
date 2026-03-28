@@ -1,0 +1,42 @@
+{
+  "namespace": "beimpact",
+  "name": "BE.IMPACT Agent Skills",
+  "description": "Reusable AI agent skills for the impact ecosystem. Teaches agents to reason about impact, navigate the Belgian ecosystem, and run BE.IMPACT workflows.",
+  "homepage": "https://be-impact.org/agent-skills",
+  "repository": "https://github.com/Be-impact/agent-skills",
+  "license": "MIT",
+  "version": "1.3.0",
+  "plugins": [
+    {
+      "slug": "impact-domain",
+      "name": "Impact Domain",
+      "description": "Skills for reasoning about impact — SDGs, B Corp, mission authenticity, theory of change, impact classification, scaling strategies, and sustainable consumption.",
+      "path": "plugins/impact-domain",
+      "skills": [
+        "bcorp-assessment",
+        "impact-mission-validator",
+        "impact-classifier",
+        "impact-scaling-strategy",
+        "theory-of-change-builder",
+        "applying-doughnut-economics-for-sustainable-development",
+        "sustainable-shopping-advisor"
+      ]
+    },
+    {
+      "slug": "ecosystem-intelligence",
+      "name": "Ecosystem Intelligence",
+      "description": "Skills for navigating the Belgian and European impact ecosystem — funding landscape, investors, accelerators, and ecosystem actors.",
+      "path": "plugins/ecosystem-intelligence",
+      "skills": [
+        "belgian-funding-navigator"
+      ]
+    },
+    {
+      "slug": "beimpact-workflows",
+      "name": "BE.IMPACT Workflows",
+      "description": "Skills for running BE.IMPACT-specific workflows — matchmaking, impact scoring, and funding roadmaps.",
+      "path": "plugins/beimpact-workflows",
+      "skills": []
+    }
+  ]
+}
