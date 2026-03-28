@@ -45,6 +45,7 @@ A dedicated view that breaks down *why* a specific org is a match — scoring th
 |-------|----------|--------|
 | `belgian-funding-navigator` | `ecosystem-intelligence/` | ✅ Live |
 | `impact-mission-validator` | `impact-domain/` | ✅ Live |
+| `sustainable-shopping-advisor` | `impact-domain/` | ✅ Live |
 
 ---
 
